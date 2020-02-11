@@ -1,0 +1,34 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "Matt",
+      "department": "Income Tracking",
+      "computer": "2019 Macbook pro"
+    },
+    {
+      "id": 2,
+      "name": "Aimee",
+      "department": "Engineering",
+      "computer": "2018 Macbook pro"
+    },
+    {
+      "id": 3,
+      "name": "Brad",
+      "department": "IT",
+      "computer": "Thinkpad"
+    },
+    {
+      "id": 4,
+      "name": "Susan",
+      "department": "Creative",
+      "computer": "Windows"
+    },
+    {
+      "id": 5,
+      "name": "Seth",
+      "department": "Marketing",
+      "computer": "Linux"
+    }
+  ]
+}
