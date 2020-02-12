@@ -1,34 +1,74 @@
 {
-  "teams": [
+  "employees": [
     {
       "id": 1,
       "name": "Matt",
-      "department": "Income Tracking",
-      "computer": "2019 Macbook pro"
+      "departmentId": "1",
+      "computerId": "1"
     },
     {
       "id": 2,
       "name": "Aimee",
-      "department": "Engineering",
-      "computer": "2018 Macbook pro"
+      "departmentId": "2",
+      "computerId": "2"
     },
     {
       "id": 3,
       "name": "Brad",
-      "department": "IT",
-      "computer": "Thinkpad"
+      "departmentId": "3",
+      "computerId": "3"
     },
     {
       "id": 4,
       "name": "Susan",
-      "department": "Creative",
-      "computer": "Windows"
+      "departmentId": "4",
+      "computerId": "4"
     },
     {
       "id": 5,
       "name": "Seth",
-      "department": "Marketing",
-      "computer": "Linux"
+      "departmentId": "5",
+      "computerId": "5"
     }
-  ]
+  ],
+  "departments": [
+    {
+      "id": 1,
+      "department_name": "Income Tracking"
+    },
+    {
+      "id": 2,
+      "department_name": "Engineering"
+    },
+    {
+      "id": 3,
+      "department_name": "Creative"
+    },
+    {
+      "id": 4,
+      "department_name": "Marketing"
+    }
+  ],
+    "computers": [
+      {
+        "id": 1,
+        "computer_model": "2019 Macbook pro"
+      },
+      {
+        "id": 2,
+        "computer_model": "2018 Macbook Pro"
+      },
+      {
+        "id": 3,
+        "computer_model": "Thinkpad"
+      },
+      {
+        "id": 4,
+        "computer_model": "Windows"
+      },
+      {
+        "id": 5,
+        "computer_model": "Linux"
+      }
+    ]
 }
