@@ -12,95 +12,80 @@ const apiManager = {
     return await computerResponse.json();
   }
 };
+// let employeesArr = [];
+// let depArr = [];
+// let compArr = [];
 
-let employeesArr = [];
-let depArr = [];
-let compArr = [];
-
-const getEmployeeName = () => {
-  const extractName = apiManager.getEmployee().then(response => {
-    response.map(employee => {
-      employeesArr.push(employee);
-    });
-    employeesArr.forEach(employee => {
-      const name = employee.name;
-      return name;
-    });
+let entityArray = [];
+// returning an array of arrays
+const getEntity = async () => {
+  const name = apiManager.getEmployee();
+  const department = apiManager.getDepartment();
+  const computers = apiManager.getComputer();
+  let values = await Promise.all([name, department, computers]);
+  values.map(entities => {
+    // entities is array of objects
+    return entityArray.push(entities);
   });
-  return extractName;
+  console.log("array:", entityArray);
+  entityArray.forEach(resource => {
+    // resource is those objects extracted
+    const name = resource[0].name;
+    console.log(name)
+    const department = resource[1].department_name;
+    console.log(department)
+    const computers = resource[2].computer_name;
+    console.log(computers)
+    //Object.entries(resource).forEach(foreignKey => {
+      // extracting key alue pairs to test for strings (the foreign keys)
+      //if (typeof foreignKey == "string") {
+        const employeeObject = { name, department, computers };
+        const employeeHTML = htmlSkeleton(employeeObject);
+        renderEmployee(employeeHTML);
+     // }
+    //});
+  });
 };
 
-const getDepartmentName = () => {
-  const extractDepartment = apiManager.getDepartment().then(response => {
-    response.map(elements => {
-      depArr.push(elements);
-      depArr.forEach(dept => {
-        const department = dept.department_name;
-        return department;
-      });
-    });
-  });
-  return extractDepartment;
-};
-
-const getComputerName = () => {
-  const extractComputer = apiManager.getComputer().then(response => {
-    response.map(elements => {
-      compArr.push(elements);
-      compArr.forEach(computer => {
-        const computers = computer.computer_model;
-        return computers;
-      });
-    });
-  });
-  return extractComputer;
-};
-
-Promise.all([getEmployeeName(), getDepartmentName(), getComputerName()]).then(arrayOfPromises => {
-    arrayOfPromises.forEach(entity => {
-      const employeeObject = { name, department, computers };
-      console.log(employeeObject);
-      const employeeHTML = htmlSkeleton(employeeObject);
-      renderEmployee(employeeHTML);
-    });
-  }
-);
-
-// const renderToDom = () => {
-//   const awaitEmployeeName = await getEmployeeName();
-//   const awaitDepartmentName = await getDepartmentName();
-//   const awaitComputerName = await getComputerName();
-
-//   Promise.all(getEmployeeName(), getDepartmentName(), getComputer()).then( => {});
-//   const employeeObject = { name, department, computers };
-//   const employeeHTML = htmlSkeleton(employeeObject);
-//   renderEmployee(employeeHTML);
-// }
-
-// function init() {
-//   apiManager.getEmployee()
-//   apiManager.getDepartment()
-//   apiManager.getComputer()
+// const filterEntity = async returnedPromiseArray => {
+//   for (let entity of Object.keys(returnedPromiseArray)) {
+//     const filterResource = returnedPromiseArray[entity];
+//     return await filterResource;
+//   }
 // };
-// init();
+
+// const renderToDom = async getEntity => {
+//   getEntity.map(async element => {
+//     element.forEach(employee => {
+//       const name = employee.name;
+//       const department = employee.department_name;
+//       const computers = employee.computer_model;
+//       const employeeObject = { name, department, computers };
+//       const employeeHTML = htmlSkeleton(employeeObject);
+//       renderEmployee(employeeHTML);
+//     });
+//   });
+// };
 
 const htmlSkeleton = ({ name, department, computer }) => {
   return `
-    <article class="employee">
-    <header class="employee__name">
-        <h1>${name}</h1>
-    </header>
-    <section class="employee__department">
-        Works in the ${department} department.
-    </section>
-    <section class="employee__computer">
-        Currently using a ${computer}
-    </section>
-</article>
-    `;
+      <article class="employee">
+      <header class="employee__name">
+          <h1>${name}</h1>
+      </header>
+      <section class="employee__department">
+          Works in the ${department} department.
+      </section>
+      <section class="employee__computer">
+          Currently using a ${computer}
+      </section>
+  </article>
+      `;
 };
 
 const renderEmployee = employeeHTML => {
   const employeeContainer = document.getElementById("table_container");
   employeeContainer.innerHTML += employeeHTML;
 };
+
+getEntity().catch(err => console.log(err));

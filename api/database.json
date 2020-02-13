@@ -3,32 +3,32 @@
     {
       "id": 1,
       "name": "Matt",
-      "departmentId": "1",
-      "computerId": "1"
+      "departmentId": 1,
+      "computerId": 1
     },
     {
       "id": 2,
       "name": "Aimee",
-      "departmentId": "2",
-      "computerId": "2"
+      "departmentId": 2,
+      "computerId": 2
     },
     {
       "id": 3,
       "name": "Brad",
-      "departmentId": "3",
-      "computerId": "3"
+      "departmentId": 3,
+      "computerId": 3
     },
     {
       "id": 4,
       "name": "Susan",
-      "departmentId": "4",
-      "computerId": "4"
+      "departmentId": 4,
+      "computerId": 4
     },
     {
       "id": 5,
       "name": "Seth",
-      "departmentId": "5",
-      "computerId": "5"
+      "departmentId": 3,
+      "computerId": 5
     }
   ],
   "departments": [
